@@ -102,7 +102,7 @@
 
     function createNewElement() {
         count_elaun_element++;
-        // First create a DIV element.
+
         var newDiv = document.createElement('div');
         var newDiv2 = document.createElement('div');
         var newDiv3 = document.createElement('div');
@@ -110,13 +110,13 @@
         newDiv.setAttribute('id', "elaun" + count_elaun_element);
         newDiv2.setAttribute('class', 'col-md-5');
         newDiv3.setAttribute('class', 'col-md-auto');
-        // Then add the content (a new input box) of the element.
+
         newDiv.innerHTML = "<div class='col-md-5'>" + "<label>Nama Elaun</label>" + "<select class='custom-select' id='nama_elaun" + count_elaun_element +"' name='nama_elaun" + count_elaun_element +"'><option hidden selected>Choose...</option><option value='1'>ITKA</option><option value='2'>Elaun Memangku</option><option value='3'>Elaun COLA</option></select>";
         newDiv2.innerHTML = "<label>Jumlah Elaun</label>" + "<input type='text' class='form-control' id='jumlah_elaun" + count_elaun_element +"' placeholder='RM' name='jumlah_elaun" + count_elaun_element +"' onchange='calc_elaun()'>";
         newDiv3.innerHTML = "<label style='visibility: hidden'>‎</label>" + "<div class='form-group'>" + "<button type='button' id='button_elaun" + count_elaun_element +"' class='btn btn-primary' onclick='removeTheElement(this.id);'>Padam Elaun</button>";
         newDiv.appendChild(newDiv2);
         newDiv.appendChild(newDiv3);
-        // Finally put it where it is supposed to appear.
+
         document.getElementById("newElement").appendChild(newDiv);
     }
 
@@ -143,7 +143,6 @@
     function removeTheElement(x) {
         count_elaun_element--;
         var element = document.getElementById(x.substring('button_'.length));
-        //alert(x.substring('button_'.length));
         element.remove();
         changeElementNameId();
         calc_elaun();
