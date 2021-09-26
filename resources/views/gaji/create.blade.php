@@ -9,7 +9,6 @@
   <p>Taraf Jawatan: {{ $data->taraf_jawatan }}</p>
   <p>Warganegara: {{ $data->warganegara }}</p>
 <div>
-    <button onchange="changeElementNameId()">button</button>
     <form method="POST" action="{{ route('gaji.store') }}">
         @csrf
 
@@ -99,24 +98,22 @@
 </div>
 <script>
 
-    var count = 1;
     var count_elaun_element = 1;
 
     function createNewElement() {
-        count++;
         count_elaun_element++;
         // First create a DIV element.
         var newDiv = document.createElement('div');
         var newDiv2 = document.createElement('div');
         var newDiv3 = document.createElement('div');
         newDiv.setAttribute('class', 'form-row mb-2');
-        newDiv.setAttribute('id', "elaun" + count);
+        newDiv.setAttribute('id', "elaun" + count_elaun_element);
         newDiv2.setAttribute('class', 'col-md-5');
         newDiv3.setAttribute('class', 'col-md-auto');
         // Then add the content (a new input box) of the element.
-        newDiv.innerHTML = "<div class='col-md-5'>" + "<label>Nama Elaun</label>" + "<select class='custom-select' id='nama_elaun" + count +"' name='nama_elaun" + count +"'><option hidden selected>Choose...</option><option value='1'>ITKA</option><option value='2'>Elaun Memangku</option><option value='3'>Elaun COLA</option></select>";
-        newDiv2.innerHTML = "<label>Jumlah Elaun</label>" + "<input type='text' class='form-control' id='jumlah_elaun" + count +"' placeholder='RM' name='jumlah_elaun" + count +"' onchange='calc_elaun()'>";
-        newDiv3.innerHTML = "<label style='visibility: hidden'>‎</label>" + "<div class='form-group'>" + "<button type='button' id='button_elaun" + count +"' class='btn btn-primary' onclick='removeTheElement(this.id);'>Padam Elaun</button>";
+        newDiv.innerHTML = "<div class='col-md-5'>" + "<label>Nama Elaun</label>" + "<select class='custom-select' id='nama_elaun" + count_elaun_element +"' name='nama_elaun" + count_elaun_element +"'><option hidden selected>Choose...</option><option value='1'>ITKA</option><option value='2'>Elaun Memangku</option><option value='3'>Elaun COLA</option></select>";
+        newDiv2.innerHTML = "<label>Jumlah Elaun</label>" + "<input type='text' class='form-control' id='jumlah_elaun" + count_elaun_element +"' placeholder='RM' name='jumlah_elaun" + count_elaun_element +"' onchange='calc_elaun()'>";
+        newDiv3.innerHTML = "<label style='visibility: hidden'>‎</label>" + "<div class='form-group'>" + "<button type='button' id='button_elaun" + count_elaun_element +"' class='btn btn-primary' onclick='removeTheElement(this.id);'>Padam Elaun</button>";
         newDiv.appendChild(newDiv2);
         newDiv.appendChild(newDiv3);
         // Finally put it where it is supposed to appear.
@@ -126,18 +123,15 @@
     function changeElementNameId() {
         i = 2;
         found = 2;
-        abc = 0;
-        while (i < count_elaun_element + 1) {
 
-            alert(abc);
-            abc++;
+        while (found < count_elaun_element + 1) {
 
-            if(document.getElementById("elaun" + i)) {
+                if(document.getElementById("elaun" + i)) {
                 document.getElementById("elaun" + i).id = "elaun" + found;
-                document.getElementById("nama_elaun" + i).id = "nama_elaun" + found;
-                document.getElementById("jumlah_elaun" + i).id = "jumlah_elaun" + found;
                 document.getElementById("nama_elaun" + i).name = "nama_elaun" + found;
                 document.getElementById("jumlah_elaun" + i).name = "jumlah_elaun" + found;
+                document.getElementById("nama_elaun" + i).id = "nama_elaun" + found;
+                document.getElementById("jumlah_elaun" + i).id = "jumlah_elaun" + found;
                 document.getElementById("button_elaun" + i).id = "button_elaun" + found;
                 found++;
             }
@@ -148,25 +142,24 @@
 
     function removeTheElement(x) {
         count_elaun_element--;
-        count--;
         var element = document.getElementById(x.substring('button_'.length));
         //alert(x.substring('button_'.length));
         element.remove();
         changeElementNameId();
+        calc_elaun();
     }
 
     function calc_elaun() {
 
+        total = 0;
 
-        // while (document.getElementById("jumlah_elaun" + i)) {
-        //     i++;
-        //     total = total + document.getElementById("jumlah_elaun" + i).value;
-        // }
+        for (let i = 0; i < count_elaun_element; i++) {
+            if (parseInt(document.getElementById("jumlah_elaun" + (i + 1)).value) > 0) {
+                total = total + parseInt(document.getElementById("jumlah_elaun" + (i + 1)).value);
+            }
+        }
 
-        // x = document.getElementById("jumlah_elaun1").value || 0;
-        // y = document.getElementById("jumlah_elaun2").value || 0;
-        // z = document.getElementById("jumlah_elaun3").value || 0;
-        // document.getElementById("jumlah_elaun").value = total;
+        document.getElementById("jumlah_elaun").value = total;
         calc_gaji();
         calc_caruman();
     }
