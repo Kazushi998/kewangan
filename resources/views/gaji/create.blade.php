@@ -130,6 +130,7 @@
             abc = 0;
             alert(abc);
             abc++;
+
             if(document.getElementById("elaun" + i)) {
                 document.getElementById("elaun" + i).id = "elaun" + found;
                 document.getElementById("nama_elaun" + i).id = "nama_elaun" + found;
