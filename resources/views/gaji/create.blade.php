@@ -126,8 +126,9 @@
     function changeElementNameId() {
         i = 2;
         found = 2;
+        abc = 0;
         while (i < count_elaun_element + 1) {
-            abc = 0;
+
             alert(abc);
             abc++;
 
