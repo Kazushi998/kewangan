@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GajiController;
+use App\Http\Controllers\ElaunController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PotonganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,5 @@ Route::view('dashboard', 'dashboard')
 
 Route::resource('profile', ProfileController::class);
 Route::resource('gaji', GajiController::class);
+Route::resource('elaun', ElaunController::class);
+Route::resource('potongan', PotonganController::class);
