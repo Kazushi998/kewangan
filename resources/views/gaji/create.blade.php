@@ -180,12 +180,14 @@
     }
 
     function calc_caruman() {
-        x = document.getElementById("gaji_bersih").value || 0;
-        if ( x > 0 && x <= 1000 ) {
+        x = document.getElementById("gaji_pokok").value || 0;
+        y = document.getElementById("jumlah_elaun").value || 0;
+        gaji_kasar = parseInt(x) + parseInt(y);
+        if ( gaji_kasar > 0 && gaji_kasar <= 1000 ) {
             document.getElementById("caruman_majikan").value = 1000;
             document.getElementById("caruman_pekerja").value = 999;
         }
-        if ( x > 1000 && x <= 2000 ) {
+        if ( gaji_kasar > 1000 && gaji_kasar <= 2000 ) {
             document.getElementById("caruman_majikan").value = 2000;
             document.getElementById("caruman_pekerja").value = 1999;
         }
