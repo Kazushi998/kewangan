@@ -38,4 +38,6 @@ class Gaji extends Model
     {
         return $this->belongsTo(Potongan::class);
     }
+
+    protected $table = 'gaji';
 }

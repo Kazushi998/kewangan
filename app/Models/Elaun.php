@@ -10,17 +10,12 @@ class Elaun extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nama_elaun1',
-        'jumlah_elaun1',
-        'nama_elaun2',
-        'jumlah_elaun2',
-        'nama_elaun3',
-        'jumlah_elaun3',
-    ];
+    public $guarded = [];
 
     public function gaji()
     {
         return $this->hasOne(Gaji::class);
     }
+
+    protected $table = 'elaun';
 }

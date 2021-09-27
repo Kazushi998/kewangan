@@ -10,17 +10,12 @@ class Potongan extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nama_potongan1',
-        'jumlah_potongan1',
-        'nama_potongan2',
-        'jumlah_potongan2',
-        'nama_potongan3',
-        'jumlah_potongan3',
-    ];
+    public $guarded = [];
 
     public function gaji()
     {
         return $this->hasOne(Gaji::class);
     }
+
+    protected $table = 'potongan';
 }
